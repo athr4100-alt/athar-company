@@ -11,6 +11,10 @@
     font-weight: normal;
     font-style: bold;
 }
+
+/* عندما تكون الشاشة بعرض 768 بكسل أو أقل (شاشات الهواتف والتابلت) */
+
+
 body {
     background: #f8f9fa;
     text-align: center;
@@ -199,7 +203,51 @@ body {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.50); 
 }
 
+/* عندما يصل حجم الشاشة إلى حجم هاتف 6.79 بوصة أو أكبر بقليل (حتى 450 بكسل) */
+/* مهما صغرت الشاشة (حتى لأصغر من حجم شاشتك) سيبقى النظام كرتين فوق وكرت تحت */
+@media (max-width: 450px) {
+    
+    .features-container {
+        display: flex;
+        flex-wrap: wrap;        /* نسمح بالالتفاف لكي ينزل الكرت الثالث فقط للأسفل */
+        justify-content: center;
+        gap: 10px;              /* تقليل الفراغات لأقصى درجة لنوفر مساحة للكرتين */
+        width: 98%;             /* استغلال كامل عرض الشاشة تقريباً */
+        padding: 0;
+        margin: 15px auto;
+    }
 
+    .feature-card {
+        /* القواعد الصارمة لمنع الطابور العمودي: */
+        flex: 0 0 calc(50% - 10px); /* الرقم 0 الثاني يمنع الكرت تماماً من الانكماش الرأسي أو النزول تحت أخيه */
+        min-width: 130px;           /* تصغير الحد الأدنى لتتحمل الشاشات الضيقة جداً دون كسر السطر */
+        box-sizing: border-box;     /* يضمن أن الحشوة الداخلية لا تزيد من حجم الكرت */
+        
+        padding: 12px 8px;          /* حشوة متناسقة وصغيرة جداً لتوفير المساحة */
+        border-radius: 12px;
+    }
+
+    /* الكرت الثالث بمفرده في الأسفل (سنجعله يأخذ العرض المناسب لكي لا يتشوه) */
+    .feature-card:nth-child(3) {
+        flex: 0 0 calc(70%);       /* يمنحه عرضاً متناسقاً في المنتصف بمفرده دون أن يصعد لأعلى */
+        max-width: 70%;
+    }
+
+    /* تصغير العناصر الداخلية لتناسب الحجم الصارم الجديد */
+    .feature-title {
+        font-size: 13px;
+        margin-bottom: 4px;
+    }
+
+    .feature-desc {
+        font-size: 10px;
+        line-height: 1.3;
+    }
+
+    .rocket, .check, .tn {
+        height: 45px;             /* حجم أيقونات صغير ومناسب جداً للكروت المتجاورة */
+    }
+}
 .feature-icon {
     font-size: 42px; 
     margin-bottom: 15px;
@@ -221,14 +269,9 @@ body {
     line-height: 1.6;
     margin: 0;
 }
-.rocket{
-    height: 100px;
-}
-.check{
-    height: 100px;
-}
-.tn{
-    height: 100px;
+
+.rocket, .check, .tn{
+      height: 100px;
 }
 
 
